@@ -1,0 +1,16 @@
+{
+    "command": [
+        "(blank)",
+        "quit, terminate",
+        "clear, cl",
+        "manual, man",
+        "time, date, datetime"
+    ],
+    "manual": [
+        "open option selection",
+        "terminate program",
+        "clear console",
+        "open program manual (this page)",
+        "print datetime"
+    ]
+}

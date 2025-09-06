@@ -1,5 +1,5 @@
 import questionary
-from packages import system_translate, system_time, system_console
+from packages import system_translate, system_console, system_time, system_json
 
 #Application program
 #Change directory to project => [On Shell : python3 app.py]
@@ -11,10 +11,6 @@ main_loop = False
 
 
 # Top level function
-
-def command_line_header():
-    now = system_time.now()
-    print("\33[47m\33[30m" + str(now["hour"]) + ":" + str(now["minute"]) + ":" + str(now["second"]) + ":" + str(now["millisecond"]), system_translate.weekday(now["day"]), str(now["day"]), system_translate.month(now["month"]), str(now["year"]) + "\33[0m")
 
 def scan_cmd(indicator):
     return input(indicator + "\33[33m >> ").lower().replace(" ", "")
@@ -44,12 +40,17 @@ class command:
         ).ask()
         if selection == "Yes":
             break_main_loop()
+        else:
+            print("")
+            print("\33[43m\33[30m Termination cancelled \33[0m")
     
     def manual(): # **เปลี่ยนเป็นเก็บข้อมูลไว้ใน .JSON และพิมพ์ออกด้วยการอ่านไฟล์
-        print("quit - to break main_loop then program terminate.")
-        print("man - to open manual page (this page).")
-        print("clear - clear console and print header.")
-        print("option - to open options selection menu.")
+        dictionary = system_json.read_json("./contents/manual.json")
+        command = dictionary["command"]
+        manual = dictionary["manual"]
+        for i in range(0, len(command)):
+            print("\33[35m " + command[i] + " \33[0m - " + manual[i])
+            
 
 
 
@@ -75,7 +76,7 @@ def command_line(cmd):
         command.manual()
     elif cmd in {"time", "date", "datetime"}:
         system_time.show_datetime()
-    elif cmd in {""}:
+    elif cmd in {""}: # ขึ้นหน้าเมนู resume, preferrence, quit, pause
         pass
     else:
         error.no_command(cmd)
@@ -96,12 +97,12 @@ def do_main_loop():
 
 #System cycle
 
-system_console.clear() # clear console interface
+system_console.start() # clear console interface
 
-command_line_header() # print header (datetime)
+system_console.datetime() # print header (datetime)
 
 start_main_loop() # start main loop processing
 
 print("")
-print("\33[43m\33[30m * KRUSANG by Metatosh™ * ")
+print("\33[41m\33[37m * TERMINATED * \33[0m")
 print("")
