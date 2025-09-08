@@ -20,7 +20,34 @@ class system_console:
         os.system("clear")
 
     def pause():
+        system_console.clear()
+        print("")
         system_console.datetime()
+        print("")
+        print("\33[43m\33[30m * Paused * \33[0m")
+        print("")
+        temp = questionary.press_any_key_to_continue("Press any key to resume...").ask()
+        system_console.clear()
+
+    def setting():
+        system_console.clear()
+        print("")
+        print("\33[44m\33[37m * System setting * \33[0m")
+        print("")
+        selection = questionary.select(
+            "Setting option...",
+            choices=[
+                "Return",
+                "Interface",
+                "File",
+                "Account"
+            ]
+        ).ask()
+        if selection == "Return":
+            pass
+        else:
+            print(selection)
+        system_console.clear()
 
     def start():
         system_console.clear()
@@ -43,7 +70,7 @@ class system_console:
 
     def datetime():
         now = system_time.now()
-        print("\33[47m\33[30m" + str(now["hour"]) + ":" + str(now["minute"]) + ":" + str(now["second"]) + ":" + str(now["millisecond"]), system_translate.weekday(now["day"]), str(now["day"]), system_translate.month(now["month"]), str(now["year"]) + "\33[0m")
+        print("\33[47m\33[30m" + str(now["hour"]) + ":" + str(now["minute"]) + ":" + str(now["second"]) + ":" + str(now["millisecond"]), system_translate.weekday(now["weekday"]), str(now["day"]), system_translate.month(now["month"]), str(now["year"]) + "\33[0m")
 
 
 
@@ -111,6 +138,6 @@ class system_time():
             "second": now.second,
             "millisecond": now.microsecond // 1000,
             "microsecond": now.microsecond,
-            "day": day
+            "weekday": now.weekday()
         }
     
