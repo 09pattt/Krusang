@@ -4,13 +4,17 @@
         "quit, terminate",
         "clear, cl",
         "manual, man",
-        "time, date, datetime"
+        "time, date, datetime",
+        "pause, stop",
+        "setting"
     ],
     "manual": [
         "open option selection",
         "terminate program",
         "clear console",
         "open program manual (this page)",
-        "print datetime"
+        "print datetime",
+        "temporary pause the program",
+        "open system setting (index page)"
     ]
 }

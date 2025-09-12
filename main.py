@@ -1,5 +1,5 @@
 import questionary
-from packages import system_translate, system_console, system_time, system_json
+from packages import system_translate, system_console, system_time, system_json, system_setting
 
 #Application program
 #Change directory to project => [On Shell : python3 app.py]
@@ -34,11 +34,11 @@ class command:
         selection = questionary.select(
             "Terminate this program?",
             choices=[
-                "Yes",
-                "No"
+                questionary.Choice(title="✅ Confirm", value="yes"),
+                questionary.Choice(title="❌ Abort", value="no")
             ]
         ).ask()
-        if selection == "Yes":
+        if selection == "yes":
             break_main_loop()
         else:
             print("")
@@ -48,25 +48,26 @@ class command:
         selection = questionary.select(
             "Option...",
             choices=[
-                "Resume",
-                "Clear",
-                "Pause",
-                "Manual",
-                "Setting",
-                "Terminate"
+                questionary.Choice(title="▶️ Resume", value="resume"),
+                questionary.Choice(title="⏸️ Pause", value="pause"),
+                questionary.Choice(title="🗑️ Clear", value="clear"),
+                questionary.Choice(title="📖 Manual", value="manual"),
+                questionary.Choice(title="⚙️ Setting", value="setting"),
+                questionary.Choice(title="⚠️ Terminate", value="terminate")
             ]
         ).ask()
-        if selection == "Resume":
+        if selection == "resume":
             pass
-        elif selection == "Clear":
+        elif selection == "clear":
             system_console.clear()
-        elif selection == "Pause":
+        elif selection == "pause":
             system_console.pause()
-        elif selection == "Manual":
+        elif selection == "manual":
+            print("")
             command.manual()
-        elif selection == "Setting":
-            system_console.setting()
-        elif selection == "Terminate":
+        elif selection == "setting":
+            system_setting.index()
+        elif selection == "terminate":
             print("")
             command.quit()
         else :
@@ -109,7 +110,7 @@ def command_line(cmd):
     elif cmd in {"pause", "stop"}:
         system_console.pause()
     elif cmd in {"setting"}:
-        system_console.setting()
+        system_setting.index()
     else:
         error.no_command(cmd)
 

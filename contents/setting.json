@@ -1,0 +1,10 @@
+{
+    "general": {
+        "index_onstart": true,
+        "shortcut": true
+    },
+    "interface": {
+        "show_header": true,
+        "emoji": true
+    }
+}

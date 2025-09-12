@@ -12,7 +12,6 @@ class system_json:
 
 
 
-
 #system_console - console interface
 
 class system_console:
@@ -27,26 +26,6 @@ class system_console:
         print("\33[43m\33[30m * Paused * \33[0m")
         print("")
         temp = questionary.press_any_key_to_continue("Press any key to resume...").ask()
-        system_console.clear()
-
-    def setting():
-        system_console.clear()
-        print("")
-        print("\33[44m\33[37m * System setting * \33[0m")
-        print("")
-        selection = questionary.select(
-            "Setting option...",
-            choices=[
-                "Return",
-                "Interface",
-                "File",
-                "Account"
-            ]
-        ).ask()
-        if selection == "Return":
-            pass
-        else:
-            print(selection)
         system_console.clear()
 
     def start():
@@ -66,8 +45,6 @@ class system_console:
         key = questionary.press_any_key_to_continue("Press any key to continue... ").ask()
         system_console.clear()
         
-        
-
     def datetime():
         now = system_time.now()
         print("\33[47m\33[30m" + str(now["hour"]) + ":" + str(now["minute"]) + ":" + str(now["second"]) + ":" + str(now["millisecond"]), system_translate.weekday(now["weekday"]), str(now["day"]), system_translate.month(now["month"]), str(now["year"]) + "\33[0m")
