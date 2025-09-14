@@ -2,9 +2,13 @@ import questionary
 import time
 from packages import system_console, system_json
 
-class setting_json:
-    def get_config():
-        return system_json.read_json("./contents/setting.json")
+
+
+class setting_json: 
+    def get_config(): #Wrapper to get JSON configuration
+        return system_json.read_json("./.krusang/setting.json")
+
+
 
 class system_setting:
     def index():

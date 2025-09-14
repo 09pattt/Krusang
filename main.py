@@ -13,7 +13,7 @@ main_loop = False
 # Top level function
 
 def scan_cmd(indicator):
-    return input(indicator + "\33[33m >> ").lower().replace(" ", "")
+    return input(indicator + "\33[33m\33[6m >> \33[0m\33[33m").lower().replace(" ", "")
 
 def start_main_loop():
     global main_loop
@@ -74,7 +74,8 @@ class command:
             pass
     
     def manual(): # **เปลี่ยนเป็นเก็บข้อมูลไว้ใน .JSON และพิมพ์ออกด้วยการอ่านไฟล์
-        dictionary = system_json.read_json("./contents/manual.json")
+        dictionary = system_json.read_json("./.krusang/message.json")
+        dictionary = dictionary["manual"]
         command = dictionary["command"]
         manual = dictionary["manual"]
         for i in range(0, len(command)):

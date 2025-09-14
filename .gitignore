@@ -1,0 +1,11 @@
+#System, IDE
+
+.vscode
+
+.idea
+
+.DS_Store
+
+#Krusang
+
+#.krusang (comment on development only)
